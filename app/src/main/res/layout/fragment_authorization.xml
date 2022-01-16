@@ -12,9 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="137dp"
-        android:layout_marginTop="61dp"
-        android:layout_marginEnd="138dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="116dp"
+        android:layout_marginEnd="16dp"
         android:text="@string/authorization"
         android:textAppearance="?android:attr/textAppearanceLarge"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,26 +25,21 @@
         android:id="@+id/edit_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="146dp"
-        android:layout_marginTop="152dp"
-        android:layout_marginEnd="146dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="148dp"
+        android:layout_marginEnd="16dp"
         android:hint="@string/input_name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Login"
-        tools:ignore="HardcodedText">
-
-        <requestFocus />
-    </EditText>
+        app:layout_constraintTop_toBottomOf="@+id/Login" />
 
     <EditText
         android:id="@+id/edit_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="135dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="29dp"
-        android:layout_marginEnd="135dp"
+        android:layout_marginEnd="16dp"
         android:hint="@string/input_pass"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,15 +52,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/edit_password"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="161dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="129dp"
-        android:layout_marginEnd="162dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="188dp"
-        android:onClick="login"
         android:text="@string/login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_password" />
 
