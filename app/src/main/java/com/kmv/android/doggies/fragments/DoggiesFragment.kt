@@ -9,52 +9,58 @@ import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kmv.android.doggies.R
-import com.kmv.android.doggies.adapter.MyRecyclerAdapter
-import com.kmv.android.doggies.databinding.FragmentLkBinding
+import com.kmv.android.doggies.adapter.DoggiesAdapter
+import com.kmv.android.doggies.databinding.FragmentDoggiesBinding
 import com.kmv.android.doggies.retrofit.Common
 import dmax.dialog.SpotsDialog
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class LkFragment : Fragment() {
-    private lateinit var lkBinding: FragmentLkBinding
+class DoggiesFragment : Fragment() {
+
+    private lateinit var binding: FragmentDoggiesBinding
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_lk, null)
+        return inflater.inflate(R.layout.fragment_doggies, container, false)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        lkBinding = FragmentLkBinding.bind(view)
-        lkBinding.userText.text = arguments?.getString(AF) ?: ""
-        lkBinding.recycleView.layoutManager = LinearLayoutManager(activity)
+        binding = FragmentDoggiesBinding.bind(view)
+        binding.userText.text = arguments?.getString(USER_NAME) ?: ""
+        binding.recycleView.layoutManager = LinearLayoutManager(activity)
         loadDoggies()
     }
+
     private fun loadDoggies() {
         val dialog = SpotsDialog.Builder().setCancelable(true).setContext(activity).build()
         dialog.show()
-        Common.retrofitService.getShibesList(15).enqueue(object : Callback<List<String>> {
+        Common.retrofitService
+                .getShibesList(15)
+                .enqueue(object : Callback<List<String>> {
             override fun onResponse(
                     call: Call<List<String>>,
                     response: Response<List<String>>
             ) {
-                lkBinding.recycleView.adapter = MyRecyclerAdapter(response.body() as List<String>)
+                binding.recycleView.adapter = DoggiesAdapter(response.body() as List<String>)
                 dialog.dismiss()
             }
             override fun onFailure(call: Call<List<String>>, t: Throwable) {
                 dialog.dismiss()
                 Toast.makeText(activity, R.string.failed_load, Toast.LENGTH_SHORT ).show()
             }
-
         })
     }
+
     companion object {
-        private const val AF = "af"
-        fun newInstance(userName: String) = LkFragment().apply {
-            arguments = bundleOf(AF to userName)
+        private const val USER_NAME = "USER_NAME"
+        fun newInstance(userName: String) = DoggiesFragment().apply {
+            arguments = bundleOf(USER_NAME to userName)
         }
     }
-
 }

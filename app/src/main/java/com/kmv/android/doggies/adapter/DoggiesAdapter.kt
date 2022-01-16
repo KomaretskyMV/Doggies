@@ -8,19 +8,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kmv.android.doggies.R
 import com.squareup.picasso.Picasso
 
-class MyRecyclerAdapter(val shibesList: List<String>)
-    : RecyclerView.Adapter<MyViewHolder>() {
+class DoggiesAdapter(val shibesList: List<String>)
+    : RecyclerView.Adapter<DoggiesViewHolder>() {
 
-
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DoggiesViewHolder {
         val itemView = LayoutInflater
                 .from(parent.context)
                 .inflate(R.layout.item_shibe, parent, false)
-        return MyViewHolder(itemView)
+        return DoggiesViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: DoggiesViewHolder, position: Int) {
         holder.bind(shibesList[position])
     }
 
@@ -29,7 +27,7 @@ class MyRecyclerAdapter(val shibesList: List<String>)
     }
 }
 
-class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class DoggiesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private var imageView: ImageView? = itemView.findViewById(R.id.imageView)
 
     fun bind(url: String) {
